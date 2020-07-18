@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <title>Garage Door Opener</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="user-scalable=0, initial-scale=1.0, width=device-width">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="http://www.segal.me/ios/touch-icon-iphone.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="http://www.segal.me/ios/touch-icon-ipad.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="http://www.segal.me/ios/touch-icon-iphone-retina.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="http://www.segal.me/ios/touch-icon-ipad-retina.png">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <button id="action" class="unselectable">Open/Close Garage Door</button>
+  <div id="webcam">
+    <video id="webcam-stream" controls="controls" width="320" height="240" autoplay="autoplay" controls playsinline>
+      <source src="cam/stream.m3u8" type="application/x-mpegURL" />
+    </video>
+  <div>
+  <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+  <script type="text/javascript" src="jquery-mobile-1.4.5.min.js"></script>
+  <script>
+    var delay = 2500;
+    var triggerTimer = null;
+    var action = $('#action');
+    var view = $('#webcam');
+
+    var triggerGarageDoor = function(event) {
+      action.removeClass('engaged');
+      $.get('trigger');
+    };
+
+    var engage = function(event) {
+      if (triggerTimer === null) {
+        action.addClass('engaged');
+        triggerTimer = window.setTimeout(triggerGarageDoor, delay);
+      }
+    };
+
+    var disengage = function(event) {
+      if (triggerTimer) {
+        action.removeClass('engaged');
+        window.clearTimeout(triggerTimer);
+        triggerTimer = null;
+      }
+    };
+
+    action.on('vmousedown', engage);
+    action.on('vmouseup', disengage);
+
+  </script>
+</body>
+</html>
+
