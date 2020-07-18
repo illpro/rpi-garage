@@ -1,0 +1,27 @@
+{
+  "name": "garage-door",
+  "version": "1.0.0",
+  "description": "Open and close a garage door",
+  "main": "garage-door.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/illpro/rpi-garage.git"
+  },
+  "keywords": [
+    "raspberry pi",
+    "garage door opener",
+    "smart home"
+  ],
+  "author": "Zachary Segal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/illpro/rpi-garage/issues"
+  },
+  "homepage": "https://github.com/illpro/rpi-garage",
+  "dependencies": {
+    "rpi-gpio": ">= 0.7.0"
+  }
+}
